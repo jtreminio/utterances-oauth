@@ -38,3 +38,41 @@ npm install
 2. Execute `npm run develop` to watch the TypeScript files and automatically build them.
 
 3. Execute `npm run start-env` to set the environment variables using your `.env` and execute `index.js`.
+
+## Docker
+
+A docker image now exists and can be run as
+
+    HOST=utterances.your-website.com \
+    docker container run -d --name utterances_oath \
+        -e PORT=5000 \
+        -e BOT_TOKEN=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \
+        -e CLIENT_ID=aaaaaaaaaaaaaaaaaaaa \
+        -e CLIENT_SECRET=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \
+        -e STATE_PASSWORD=01234567890123456789012345678901 \
+        -e SCOPES=public_repo \
+        -e ORIGINS=https://${HOST},http://localhost:9000 \
+        -e APP_ROOT=https://${HOST} \
+        -e USER_AGENT=utterances \
+        jtreminio/utterances
+
+If you use Traefik you would run the following:
+
+    HOST=utterances.your-website.com \
+    docker container run -d --name utterances_oath \
+        --label traefik.backend=utterances_oath \
+        --label traefik.docker.network=traefik_webgateway \
+        --label traefik.frontend.rule=Host:${HOST} \
+        --label traefik.port=5000 \
+        --network traefik_webgateway \
+        --restart always \
+        -e PORT=5000 \
+        -e BOT_TOKEN=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \
+        -e CLIENT_ID=aaaaaaaaaaaaaaaaaaaa \
+        -e CLIENT_SECRET=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \
+        -e STATE_PASSWORD=01234567890123456789012345678901 \
+        -e SCOPES=public_repo \
+        -e ORIGINS=https://${HOST},http://localhost:9000 \
+        -e APP_ROOT=https://${HOST} \
+        -e USER_AGENT=utterances \
+        jtreminio/utterances
