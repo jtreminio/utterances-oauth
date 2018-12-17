@@ -1,7 +1,5 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
   "editor.formatOnSave": true,
-  "editor.insertSpaces": true,
-  "editor.tabSize": 2,
-  "files.insertFinalNewline": true
+  "json.format.enable": false
 }

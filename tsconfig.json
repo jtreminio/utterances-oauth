@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "es5",
+    "module": "commonjs",
     "outDir": "dist",
     "moduleResolution": "node",
     "lib": [
-      "esnext",
-      "dom"
+      "es2017"
     ],
     "strict": true,
     "strictNullChecks": true,
