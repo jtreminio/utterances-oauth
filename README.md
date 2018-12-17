@@ -45,7 +45,7 @@ A docker image now exists and can be run as
 
     HOST=utterances-oauth.your-website.com
     ORIGIN=utterances.your-website.com
-    docker container run -d --name utterances_oath \
+    docker container run -d --name utterances_oauth \
         -e PORT=5000 \
         -e BOT_TOKEN=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \
         -e CLIENT_ID=aaaaaaaaaaaaaaaaaaaa \
@@ -61,7 +61,7 @@ If you use Traefik you would run the following:
 
     HOST=utterances-oauth.your-website.com
     ORIGIN=utterances.your-website.com
-    docker container run -d --name utterances_oath \
+    docker container run -d --name utterances_oauth \
         --label traefik.backend=utterances_oath \
         --label traefik.docker.network=traefik_webgateway \
         --label traefik.frontend.rule=Host:${HOST} \
