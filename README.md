@@ -43,7 +43,8 @@ npm install
 
 A docker image now exists and can be run as
 
-    HOST=utterances.your-website.com \
+    HOST=utterances-oauth.your-website.com
+    ORIGIN=utterances.your-website.com
     docker container run -d --name utterances_oath \
         -e PORT=5000 \
         -e BOT_TOKEN=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \
@@ -51,14 +52,15 @@ A docker image now exists and can be run as
         -e CLIENT_SECRET=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \
         -e STATE_PASSWORD=01234567890123456789012345678901 \
         -e SCOPES=public_repo \
-        -e ORIGINS=https://${HOST},http://localhost:9000 \
+        -e ORIGINS=https://${ORIGIN},http://localhost:9000 \
         -e APP_ROOT=https://${HOST} \
         -e USER_AGENT=utterances \
-        jtreminio/utterances
+        jtreminio/utterances-oauth
 
 If you use Traefik you would run the following:
 
-    HOST=utterances.your-website.com \
+    HOST=utterances-oauth.your-website.com
+    ORIGIN=utterances.your-website.com
     docker container run -d --name utterances_oath \
         --label traefik.backend=utterances_oath \
         --label traefik.docker.network=traefik_webgateway \
@@ -72,7 +74,7 @@ If you use Traefik you would run the following:
         -e CLIENT_SECRET=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \
         -e STATE_PASSWORD=01234567890123456789012345678901 \
         -e SCOPES=public_repo \
-        -e ORIGINS=https://${HOST},http://localhost:9000 \
+        -e ORIGINS=https://${ORIGIN},http://localhost:9000 \
         -e APP_ROOT=https://${HOST} \
         -e USER_AGENT=utterances \
-        jtreminio/utterances
+        jtreminio/utterances-oauth
