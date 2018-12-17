@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+git clone https://github.com/jtreminio/utterances-oauth.git
+cd utterances-oauth
+
+docker image build \
+    -t jtreminio/utterances-oauth \
+    -f Dockerfile \
+    .
+
+# docker image push jtreminio/utterances-oauth
+# docker image push jtreminio/utterances-oauth:latest
